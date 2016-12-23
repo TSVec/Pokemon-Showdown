@@ -1216,7 +1216,7 @@ exports.Formats = [
 		],
 
 		mod: 'gen1',
-		searchShow: false,
+		searchShow: true,
 		ruleset: ['Pokemon', 'Standard'],
 	},
 	{
