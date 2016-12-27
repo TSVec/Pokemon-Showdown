@@ -297,7 +297,7 @@ exports.BattleMovedex = {
 		},
 	},
 	"lewisite": {
-		num: 51,
+		num: 1000,
 		accuracy: 90,
 		basePower: 40,
 		category: "Special",
@@ -305,7 +305,7 @@ exports.BattleMovedex = {
 		shortDesc: "10% chance to lower the foe(s) Def by 1.",
 		id: "lewisite",
 		name: "Lewisite",
-		pp: 30,
+		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		secondary: {
@@ -314,11 +314,11 @@ exports.BattleMovedex = {
 				def: -1,
 			},
 		},
-		target: "allAdjacentFoes",
+		target: "allAdjacentFoes",a
 		type: "Gas",
 		zMovePower: 100,
 		contestType: "Clever",
-},
+	},
 	lightscreen: {
 		inherit: true,
 		effect: {
