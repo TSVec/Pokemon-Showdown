@@ -23,6 +23,8 @@ exports.BattleTypeChart = {
 			"Water": 1,
 		},
 	},
+	"Gas": {
+		
 	"Ice": {
 		inherit: true,
 		damageTaken: {
