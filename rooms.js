@@ -288,6 +288,15 @@ class GlobalRoom {
 				isPrivate: true,
 				staffRoom: true,
 				staffAutojoin: true,
+			}, {
+				title: 'Malfoy Manor'
+                                isOfficial: true,
+			}, {
+				title: 'Staff Training 101'
+				isOfficial: true,
+			}, {
+                                title: 'Code Testing Room'
+                                isOfficial: true,   					
 			}];
 		}
 
