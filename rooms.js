@@ -312,9 +312,9 @@ class GlobalRoom {
 			if (room.autojoin) this.autojoin.push(id);
 			if (room.staffAutojoin) this.staffAutojoin.push(id);
 		}
-		Rooms.lobby = Rooms.rooms.get('lobby');
-                Rooms.MalfoyManor = Rooms.rooms.get('malfoymanor');
-                Rooms.StaffTraining101 = Rooms.rooms.get('stafftraining101');
+		Rooms.lobby = Rooms.rooms.get('lobby')
+                Rooms.malfoymanor = Rooms.rooms.get('malfoymanor')
+                Rooms.stafftraining101 = Rooms.rooms.get('stafftraining101');
 
 		// this function is complex in order to avoid several race conditions
 		this.writeNumRooms = (() => {
