@@ -725,7 +725,6 @@ let Formats = [
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
-		{
 		name: "[Gen 4]Prism ",
 		desc: "Under Construction",
 		mod: 'prism',
