@@ -806,6 +806,7 @@ let Formats = [
 		desc: "Under Construction",
 		mod: 'prism',
 		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause'],
+		banlist: ['Caterpie','Weedle'],
 	},
 	// Past Gens OU
 	///////////////////////////////////////////////////////////////////
