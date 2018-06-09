@@ -1565,7 +1565,7 @@ exports.BattleMovedex = {
 		inherit: true,
 		flags: {},
 	},
-	springbuds": {
+	"springbuds": {
         num: 623,
         accuracy: 90,
         basePower: 75,
