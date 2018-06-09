@@ -1565,6 +1565,46 @@ exports.BattleMovedex = {
 		inherit: true,
 		flags: {},
 	},
+	springbuds": {
+        num: 623,
+        accuracy: 90,
+        basePower: 75,
+        category: "Physical",
+        shortDesc: "has a chance of seeding the foe",
+        id: "springbuds",
+        isViable: true,
+        name: "Spring Buds",
+        pp: 10,
+        priority: 0,
+        flags: {contact: 1, protect: 1, mirror: 1, heal: 1},
+        volatileStatus: 'leechseed',
+        effect: {
+            onStart: function (target) {
+                this.add('-start', target, 'move: Leech Seed');
+            },
+            onResidualOrder: 8,
+            onResidual: function (pokemon) {
+                let target = this.effectData.source.side.active[pokemon.volatiles['leechseed'].sourcePosition];
+                if (!target || target.fainted || target.hp <= 0) {
+                    this.debug('Nothing to leech into');
+                    return;
+                }
+                let damage = this.damage(pokemon.maxhp / 8, pokemon, target);
+                if (damage) {
+                    this.heal(damage, target, pokemon);
+                }
+            },
+         },
+        onTryHit: function (target) {
+            if (target.hasType('Grass')) {
+                this.add('-immune', target, '[msg]');
+                return null;
+            }
+        },
+        secondary: 10,        
+        target: "normal",
+        type: "Grass",
+        },
 	spite: {
 		inherit: true,
 		flags: {protect: 1, mirror: 1, authentic: 1},
