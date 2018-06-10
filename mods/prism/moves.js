@@ -272,7 +272,7 @@ exports.BattleMovedex = {
         	priority: 0,
         	flags: {protect: 1, mirror: 1},
         	onEffectiveness: function (typeMod, type) {
-            		if (type === 'Ground') return 0;
+            		if (type === 'Ground') return 1;
         	},
         	secondary: false,
         	target: "normal",
@@ -824,7 +824,7 @@ exports.BattleMovedex = {
 				}
 			},
 		},
-		secondary: false,
+		secondary: true,
 		target: "foeSide",
 		type: "Fire",
 		zMoveBoost: {spa: 1},
@@ -1603,7 +1603,7 @@ exports.BattleMovedex = {
         secondary: 10,        
         target: "normal",
         type: "Grass",
-        },
+   },
 	spite: {
 		inherit: true,
 		flags: {protect: 1, mirror: 1, authentic: 1},
