@@ -773,7 +773,6 @@ exports.BattleMovedex = {
 		},
 	},
   lavapool: {
-		num: 7002,
 		accuracy: 80,
 		basePower: 0,
 		category: "Status",
