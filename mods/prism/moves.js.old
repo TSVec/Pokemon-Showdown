@@ -260,7 +260,7 @@ exports.BattleMovedex = {
 			return Math.floor(target.hp * 120 / target.maxhp) + 1;
 		},
 	},
-	"crystalbolt": {
+"crystalbolt": {
         accuracy: 100,
             basePower: 70,
             category: "Special",
@@ -271,6 +271,9 @@ exports.BattleMovedex = {
             pp: 20,
             priority: 0,
             flags: {protect: 1, mirror: 1},
+            onEffectiveness: function (typeMod, type) {
+                    if (type === 'Ground') return 0;
+            },
             ignoreImmunity: {'Electric': true},
             secondary: false,
             target: "normal",
@@ -781,7 +784,7 @@ exports.BattleMovedex = {
 		name: "Lava Pool",
 		pp: 15,
 		priority: 0,
-		flags: {reflectable: 1, nonsky: 1},
+		flags: {nonsky: 1,},
 		sideCondition: 'lavapool',
 		effect: {
 			// this is a side condition
@@ -796,13 +799,33 @@ exports.BattleMovedex = {
 			},
 			onSwitchIn: function (pokemon) {
 				if (!pokemon.isGrounded()) return;
-				if (!pokemon.runImmunity('Burn')) return;
-				if (pokemon.hasType('Fire')) return;
+				
+				//checks for Safeguard?
+				//if (!pokemon.runImmunity('Burn')) return;
+				
+				//doesn't burn fire types?
+				if (poke.hasType('Fire')) return;
+				
+				//keep for reference on removing with water attacks, or if fire type removal added
+				/*if (pokemon.hasType('Poison')) {
+					this.add('-sideend', pokemon.side, 'move: Toxic Spikes', '[of] ' + pokemon);
+					pokemon.side.removeSideCondition('toxicspikes');
+				} else if (this.effectData.layers >= 2) {
+					pokemon.trySetStatus('tox', pokemon.side.foe.active[0]);
+				} else {
+					pokemon.trySetStatus('psn', pokemon.side.foe.active[0]);
+				}*/
+				
 				pokemon.trySetStatus('brn', pokemon.side.foe.active[0]);
 			},
-			// TODO - Check game for conditions such as; if a fire pokemon is switched in does it remove lava pool like tspikes?
+			onBasePower: function (basePower, attacker, defender, move) {
+				if (move.type === 'Water' && !defender.isSemiInvulnerable()) {
+					this.add('-sideend', pokemon.side, 'move: Lava Pool', '[of] ' + pokemon);
+					pokemon.side.removeSideCondition('lavapool');
+				}
+			},
 		},
-		secondary: false,
+		secondary: true,
 		target: "foeSide",
 		type: "Fire",
 		zMoveBoost: {spa: 1},
@@ -1560,7 +1583,7 @@ exports.BattleMovedex = {
             }
         },
         secondary: {
-			chance: 10, 
+			chance: 100, 
 			volatileStatus: 'leechseed',
 			effect: {
 				onStart: function (target) {
@@ -1581,7 +1604,7 @@ exports.BattleMovedex = {
 		},			
         target: "normal",
         type: "Grass",
-	},
+},
 	spite: {
 		inherit: true,
 		flags: {protect: 1, mirror: 1, authentic: 1},
