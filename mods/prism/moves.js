@@ -616,8 +616,8 @@ exports.BattleMovedex = {
 		},
 	},
 	"ghosthammer": {
-        	accuracy: 85,
-        	basePower: 80,
+        	accuracy:100,
+        	basePower: 85,
         	category: "Physical",
         	desc: "This move does neutral damage.",
         	shortDesc: "Ignores types",
@@ -793,7 +793,9 @@ exports.BattleMovedex = {
 				if (!pokemon.isGrounded()) return;
 				if (!pokemon.runImmunity('Burn')) return;
 				if (pokemon.hasType('Fire')) return;
-				pokemon.trySetStatus('brn', pokemon.side.foe.active[0]);
+                                else {
+					pokemon.trySetStatus('brn', pokemon.side.foe.active[0]);
+                                }
 			},
 			// TODO - Check game for conditions such as; if a fire pokemon is switched in does it remove lava pool like tspikes?
 			// TODO - Add removal of lava pool by defog/rapid spin
