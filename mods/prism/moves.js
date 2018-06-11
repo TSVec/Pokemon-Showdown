@@ -828,12 +828,6 @@ contestType: "Cool",
 			onSwitchIn: function (pokemon) {
 					pokemon.trySetStatus('brn', pokemon.side.foe.active[0]);
 			},
-			onModifyMove: function (move) {
-				if (move.type === 'Water') {
-					this.add('-sideend', pokemon.side, 'move: Lava Pool', '[of] ' + pokemon);
-					pokemon.side.removeSideCondition('lavapool');
-				}
-			},
 		},
 		secondary: false,
 		target: "foeSide",
