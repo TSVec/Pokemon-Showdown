@@ -43,6 +43,28 @@ let BattleAbilities = {
 		},
 		onAfterMoveSecondary: function () {},
 	},
+	"competitive": {
+		desc: "This Pokemon's Special Attack is raised by 2 stages for each of its stat stages that is lowered by an opposing Pokemon.",
+		shortDesc: "This Pokemon's Sp. Atk is raised by 2 for each of its stats that is lowered by a foe.",
+		onAfterEachBoost: function (boost, target, source) {
+			if (!source || target.side === source.side) {
+				return;
+			}
+			let statsLowered = false;
+			for (let i in boost) {
+				// @ts-ignore
+				if (boost[i] < 0) {
+					statsLowered = true;
+				}
+			}
+			if (statsLowered) {
+				this.boost({spa: 2}, target, target, null, true);
+			}
+		},
+		id: "competitive",
+		name: "Competitive",
+		rating: 2.5,
+},
 	"effectspore": {
 		inherit: true,
 		onAfterDamage: function (damage, target, source, move) {
