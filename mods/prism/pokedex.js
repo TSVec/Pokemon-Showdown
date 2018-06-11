@@ -89,6 +89,7 @@ exports.BattlePokedex = {
 		prevo: "feebas",
 		evoLevel: 1,
 eggGroups: ["Water 1", "Dragon"],
+	},
 	fambaco : {
 		species: "Fambaco",
 		types: ["Ghost", "Fighting"],
