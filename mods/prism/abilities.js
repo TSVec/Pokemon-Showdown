@@ -34,8 +34,7 @@ exports.BattleAbilities = {
 		id: "competitive",
 		name: "Competitive",
 		rating: 2.5,
-		num: 172,
-},
+		},
 	"effectspore": {
 		inherit: true,
 		onAfterDamage: function (damage, target, source, move) {
