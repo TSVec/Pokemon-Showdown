@@ -294,9 +294,45 @@ exports.BattleMovedex = {
 		},
 		type: "???",
 	},
-	defog: {
-		inherit: true,
-		flags: {protect: 1, mirror: 1, authentic: 1},
+	"defog": {
+		num: 432,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Lowers the target's evasiveness by 1 stage. If this move is successful and whether or not the target's evasiveness was affected, the effects of Reflect, Light Screen, Aurora Veil, Safeguard, Mist, Spikes, Toxic Spikes, Stealth Rock, and Sticky Web end for the target's side, and the effects of Spikes, Toxic Spikes, Stealth Rock, and Sticky Web end for the user's side. Ignores a target's substitute, although a substitute will still block the lowering of evasiveness.",
+		shortDesc: "-1 evasion; clears user and target side's hazards.",
+		id: "defog",
+		isViable: true,
+		name: "Defog",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1, authentic: 1},
+		onHit: function (target, source, move) {
+			/**@type {?boolean | number} */
+			let success = false;
+			if (!target.volatiles['substitute'] || move.infiltrates) success = this.boost({evasion: -1});
+			let removeTarget = ['lavapool', 'reflect', 'lightscreen', 'auroraveil', 'safeguard', 'mist', 'spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
+			let removeAll = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
+			for (const targetCondition of removeTarget) {
+				if (target.side.removeSideCondition(targetCondition)) {
+					if (!removeAll.includes(targetCondition)) continue;
+					this.add('-sideend', target.side, this.getEffect(targetCondition).name, '[from] move: Defog', '[of] ' + target);
+					success = true;
+				}
+			}
+			for (const sideCondition of removeAll) {
+				if (source.side.removeSideCondition(sideCondition)) {
+					this.add('-sideend', source.side, this.getEffect(sideCondition).name, '[from] move: Defog', '[of] ' + source);
+					success = true;
+				}
+			}
+			return success;
+		},
+		secondary: false,
+		target: "normal",
+		type: "Flying",
+		zMoveBoost: {accuracy: 1},
+contestType: "Cool",
 	},
 	detect: {
 		inherit: true,
