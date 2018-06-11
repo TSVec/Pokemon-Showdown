@@ -1472,6 +1472,41 @@ contestType: "Cool",
 		inherit: true,
 		flags: {snatch:1, authentic: 1},
 	},
+	"rapidspin": {
+		num: 229,
+		accuracy: 100,
+		basePower: 20,
+		category: "Physical",
+		desc: "If this move is successful and the user has not fainted, the effects of Leech Seed and partial-trapping moves end for the user, and all hazards are removed from the user's side of the field.",
+		shortDesc: "Frees user from hazards/partial trap/Leech Seed.",
+		id: "rapidspin",
+		isViable: true,
+		name: "Rapid Spin",
+		pp: 40,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		self: {
+			onHit: function (pokemon) {
+				if (pokemon.hp && pokemon.removeVolatile('leechseed')) {
+					this.add('-end', pokemon, 'Leech Seed', '[from] move: Rapid Spin', '[of] ' + pokemon);
+				}
+				let sideConditions = ['lavapool', 'spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
+				for (const condition of sideConditions) {
+					if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
+						this.add('-sideend', pokemon.side, this.getEffect(condition).name, '[from] move: Rapid Spin', '[of] ' + pokemon);
+					}
+				}
+				if (pokemon.hp && pokemon.volatiles['partiallytrapped']) {
+					pokemon.removeVolatile('partiallytrapped');
+				}
+			},
+		},
+		secondary: false,
+		target: "normal",
+		type: "Normal",
+		zMovePower: 100,
+		contestType: "Cool",
+},
 	recycle: {
 		inherit: true,
 		flags: {},
