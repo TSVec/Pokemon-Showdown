@@ -790,12 +790,12 @@ exports.BattleMovedex = {
 				this.add('-sidestart', side, 'move: Lava Pool');
 			},
 			onSwitchIn: function (pokemon) {
-				if (!pokemon.isGrounded()) return;
+				/*if (!pokemon.isGrounded()) return;
 				if (!pokemon.runImmunity('Burn')) return;
 				if (pokemon.hasType('Fire')) return;
-                                else {
+                else {*/
 					pokemon.trySetStatus('brn', pokemon.side.foe.active[0]);
-                                }
+                //}
 			},
 			// TODO - Check game for conditions such as; if a fire pokemon is switched in does it remove lava pool like tspikes?
 			// TODO - Add removal of lava pool by defog/rapid spin
@@ -803,7 +803,7 @@ exports.BattleMovedex = {
 		secondary: false,
 		target: "foeSide",
 		type: "Fire",
-		zMoveBoost: {spa: 1},
+		//zMoveBoost: {spa: 1},
 		contestType: "Clever",
 	},
 	lastresort: {
