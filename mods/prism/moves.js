@@ -1825,7 +1825,7 @@ contestType: "Cool",
 		ignoreImmunity: {'Ghost': true},
         	secondary: false,
         	target: "normal",
-        	type: "Normal",
+        	type: "Tri",
         	contestType: "Clever",
     	},
 	volttackle: {
