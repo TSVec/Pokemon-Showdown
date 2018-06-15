@@ -1070,11 +1070,11 @@ contestType: "Cool",
 		basePower: 0,
 		category: "Status",
 		desc: "This move's type is randomly determined",
-        shortDesc: "Varies in type randomly.",        
+                shortDesc: "Varies in type randomly.",
 		id: "prismspray",
-        name: "Prism Spray",
-        pp: 20,
-        priority: 0,
+                name: "Prism Spray",
+                pp: 20,
+                priority: 0,
 		flags: {},
 		onHit: function (target) {
 			let moves = [];
@@ -1104,7 +1104,7 @@ contestType: "Cool",
 		type: "Normal",
 		contestType: "Cute",
 	},
-		
+
 	"pswater": {
 		accuracy: 100,
 		basePower: 100,
@@ -1817,10 +1817,12 @@ contestType: "Cool",
         	pp: 20,
         	priority: 0,
         	flags: {protect: 1, mirror: 1},
-        	onEffectiveness: function (typeMod, type) {
-            		return 0;
-        	},
-			ignoreImmunity: {'Ghost': true},
+        	onTryHit: function (target, type) {
+                    //onNegateImmunity: function (pokemon, type) {
+                    if (target.hasType('Ghost') && ['Normal', 'Fighting'].includes(type)) return false;
+                    //},
+                },
+		ignoreImmunity: {'Ghost': true},
         	secondary: false,
         	target: "normal",
         	type: "Normal",
